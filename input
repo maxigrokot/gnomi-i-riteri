@@ -3,3 +3,30 @@ def fprint(field):
     for i in range(N): 
         print(i, ' '.join(field[i])) 
 
+def user1_input(): 
+    user_cross = [] 
+    while True: 
+        user_cross = list(map(int, list(input("Ваш ход, ,благородный рыцарь, сделайте свой ход в борьбе с гномами, формат (строка колонка): ").split()))) 
+        if len(user_cross) == 2 and all(list(map(lambda x: x in range(N), user_cross))): 
+            row, col = user_cross[0], user_cross[1] 
+            if empty_cell(row, col): 
+                print("Ваш выбор, Сэр рыцарь: ", user_cross) 
+                return user_cross 
+            else: 
+                print("Гномы заложили ловушку на данном поле, выберите другое") 
+        else: 
+            print("Кажется вы не сделали что-то не так, попробуйте ещё раз!")
+
+def user2_input(): 
+    user_cross = [] 
+    while True: 
+        user_cross = list(map(int, list(input("Твий ход, брат гном! нанеси удар по глупи рыцарь, формат (строка колонка): ").split()))) 
+        if len(user_cross) == 2 and all(list(map(lambda x: x in range(N), user_cross))): 
+            row, col = user_cross[0], user_cross[1] 
+            if empty_cell(row, col): 
+                print("Твий ход, брат гном: ", user_cross) 
+                return user_cross 
+            else: 
+                print("Глупий рыцарь построил свой аванпост здесь, выбери другую поляну") 
+        else: 
+            print("Кажется ты съел что-то не то, попробуй сделать это по другому")
