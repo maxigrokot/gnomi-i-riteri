@@ -46,3 +46,56 @@ def count_empty_cells():
                 count += 1 
     return count 
 
+
+def check_row(row, sym): 
+    count = 0 
+    for col in range(N): 
+        val = field[row][col] 
+        if (val == sym): 
+            count += 1 
+
+    return count == 3 
+
+
+def check_col(col, sym): 
+    count = 0 
+    for row in range(N): 
+        val = field[row][col] 
+        if (val == sym): 
+            count += 1 
+
+    return count == 3 
+
+
+def check_diag1(sym): 
+    count = 0 
+    for i in range(N): 
+        val = field[i][i] 
+        if (val == sym): 
+            count += 1 
+
+    return count == 3 
+
+
+def check_diag2(sym): 
+    count = 0 
+    for i in range(N): 
+        val = field[i][N - i - 1] 
+        if (val == sym): 
+            count += 1 
+
+    return count == 3 
+
+
+def check_win(sym): 
+    check = [] 
+
+    for i in range(N): 
+        check.append(check_row(i, sym)) 
+        check.append(check_col(i, sym)) 
+
+    check.append(check_diag1(sym)) 
+    check.append(check_diag2(sym)) 
+
+    return any(check) 
+
