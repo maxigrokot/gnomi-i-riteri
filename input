@@ -99,3 +99,44 @@ def check_win(sym):
 
     return any(check) 
 
+
+otv="да"
+while otv == "да" or otv == "ДА":
+
+    N = 3 
+    field = [['(   )' for i in range(N)] for j in range(N)] 
+    k_h = 9
+
+    while count_empty_cells() >= 0:
+        
+        
+        fprint(field) 
+        user_cross = user1_input() 
+        row, col = user_cross[0], user_cross[1] 
+        field[row][col] = '|-.-|'
+        k_h -= 1
+            
+        if check_win('|-.-|'): 
+            fprint(field) 
+            print("Поздравляю, вы искоренили угрозу гномов в нашем королевстве! Слава Империи!") 
+            break 
+        
+        if (k_h == 0):
+            fprint(field) 
+            print("Поздравляю, гномы и рыцари достигли согласия")
+            break
+        
+        fprint(field)
+        user_cross = user2_input() 
+        row, col = user_cross[0], user_cross[1] 
+        field[row][col] = '(.^.)'
+        k_h -= 1
+        
+        if check_win('(.^.)'): 
+            fprint(field) 
+            print("Хе-хе-хе, глупий рыцарь не смог победить велики гном! Хе-хе-хе") 
+            break
+
+    print("Конец игры")
+    print("Хтите снова победить гнома или глупи рыцаря? (ответы: да или ДА, вы не можете отказаться :>)")
+    otv=str(input())
